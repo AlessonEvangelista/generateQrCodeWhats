@@ -24,7 +24,12 @@
           ></textarea>
         </div>
       </div>
-      <div class="col-12 d-flex justify-content-around">
+      <div class="col-12">
+        <div>
+          <!-- <qrCodeComponent /> -->
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-around" style="border-top: 2px solid #ddd">
         <router-link to="/" class="btn btn-lg btn-info">VOLTAR</router-link>
         <a target="_blank" :href="$route.params.link" class="btn btn-lg btn-warning">TESTAR</a>
         <button id="copiar" class="btn btn-lg btn-success" data-clipboard-target="#link" >COPIAR</button>
@@ -38,9 +43,10 @@ import ClipboardJS from "clipboard";
 import axios from "axios";
 new ClipboardJS("#copiar");
 
-const BITLY_URL = 'https://api-ssl.bitly.com/v3/shorten?';
+const BITLY_URL = "https://api-ssl.bitly.com/v3/shorten?";
 const BITLY_LOGIN = "o_4nm0b7lfsb";
 const BITLY_KEY = "R_3acba2a6f39844c2adb685084688f6bd";
+import qrCodeComponent from "@/components/qrCodeComponent.vue";
 
 export default {
   name: "About",
@@ -49,7 +55,10 @@ export default {
       longUrl: this.$route.params.link,
       shortenUrl: "",
       errorInput: false
-    }
+    };
+  },
+  components: {
+    qrCodeComponent
   },
   methods: {
     ControlDatas: function() {
@@ -78,6 +87,6 @@ export default {
           this.isLoading = false;
         });
     }
-  }
+  },
 };
 </script>
